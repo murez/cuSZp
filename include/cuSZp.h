@@ -1,6 +1,12 @@
 #ifndef CUSZP_H
 #define CUSZP_H
 
+#include <cuda_runtime.h>
+#include <stddef.h>
+#include <stdio.h>
+
+#ifdef __cplusplus
+
 #include "cuSZp/cuSZp_entry_1D_f32.h"
 #include "cuSZp/cuSZp_entry_1D_f64.h"
 #include "cuSZp/cuSZp_entry_2D_f32.h"
@@ -9,11 +15,7 @@
 #include "cuSZp/cuSZp_entry_3D_f64.h"
 #include "cuSZp/cuSZp_timer.h"
 #include "cuSZp/cuSZp_utility.h"
-#include <cstddef>
-#include <cuda_runtime.h>
-#include <stdio.h>
 
-#ifdef __cplusplus
 extern "C" {
 #endif
 
@@ -38,11 +40,11 @@ typedef enum {
 void cuSZp_compress(void *d_oriData, unsigned char *d_cmpBytes, size_t nbEle,
                     size_t *cmpSize, float errorBound, cuszp_dim_t dim,
                     uint3 dims, cuszp_type_t type, cuszp_mode_t mode,
-                    cudaStream_t stream = 0);
+                    cudaStream_t stream);
 void cuSZp_decompress(void *d_decData, unsigned char *d_cmpBytes, size_t nbEle,
                       size_t cmpSize, float errorBound, cuszp_dim_t dim,
                       uint3 dims, cuszp_type_t type, cuszp_mode_t mode,
-                      cudaStream_t stream = 0);
+                      cudaStream_t stream);
 
 #ifdef __cplusplus
 }
